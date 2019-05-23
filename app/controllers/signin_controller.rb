@@ -30,8 +30,8 @@ class SigninController < ApplicationController
 
   private
 
-  def not_found
-    render json: { error: "Cannot found email/password combination" }, status: :not_found
-  end
+    def not_found
+      render json: { error: "Cannot found email/password combination" }, status: :not_found
+    end
 
 end
