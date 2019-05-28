@@ -1,14 +1,14 @@
 <template>
   <v-container fluid fill-height>
     <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md4>
+      <v-flex xs12 sm8 md6>
         <v-card class="elevation-12">
-          <v-toolbar dark color="primary">
+          <v-toolbar dark color="teal lighten-1">
             <v-toolbar-title>Sign In</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
             <v-form @submit.prevent="signin">
-              <div v-if="error">{{ error }}</div>
+              <v-alert v-if="error" :value="true" type="warning" class="mb-4">{{ error }}</v-alert>
 
               <v-text-field
                 prepend-icon="person"
@@ -30,7 +30,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit">Sign In</v-btn>
+            <v-btn color="success" type="submit">Sign In</v-btn>
             <v-btn color="primary" to="/signup">Sign Up</v-btn>
           </v-card-actions>
         </v-card>
@@ -88,3 +88,26 @@ export default {
   }
 };
 </script>
+
+<style lang="sass" scoped>
+.v-toolbar
+
+  &__title
+    margin-left: auto
+    margin-right: auto
+
+.v-card
+
+  &__text
+    padding:
+      top: 40px
+      left: 15%
+      right: 15%
+
+  &__actions
+    padding:
+      left: 15%
+      right: 15%
+      bottom: 30px
+</style>
+
