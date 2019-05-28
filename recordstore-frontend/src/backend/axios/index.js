@@ -57,3 +57,8 @@ securedAxiosInstance.interceptors.response.use(null, error => {
     return Promise.reject(error)
   }
 })
+
+export {
+  securedAxiosInstance,
+  plainAxiosInstance
+}
