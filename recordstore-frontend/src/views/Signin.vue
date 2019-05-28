@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md6>
+      <v-flex xs12 sm8 md4>
         <v-card class="elevation-12">
           <v-toolbar dark color="teal lighten-1">
             <v-toolbar-title>Sign In</v-toolbar-title>
@@ -30,10 +30,11 @@
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="success" type="submit">Sign In</v-btn>
-            <v-btn color="primary" to="/signup">Sign Up</v-btn>
+            <v-btn block color="success" type="submit">Sign In</v-btn>
           </v-card-actions>
+          <div class="v-card__link text-xs-center">
+            <v-btn small outline color="indigo" to="/signup">Sign Up</v-btn>
+          </div>
         </v-card>
       </v-flex>
     </v-layout>
@@ -109,6 +110,8 @@ export default {
     padding:
       left: 15%
       right: 15%
-      bottom: 30px
+
+  &__link
+    padding-bottom: 30px
 </style>
 
