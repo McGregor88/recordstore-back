@@ -4,10 +4,10 @@
       <v-flex xs12 sm8 md4>
         <v-card class="elevation-12">
           <v-toolbar dark color="teal lighten-1">
-            <v-toolbar-title>Sign Up</v-toolbar-title>
+            <v-toolbar-title>Sign In</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form @submit.prevent="signup">
+            <v-form @submit.prevent="signin">
               <v-alert v-if="error" :value="true" type="warning" class="mb-4">{{ error }}</v-alert>
 
               <v-text-field
@@ -27,22 +27,13 @@
                 id="password"
                 type="password"
               ></v-text-field>
-
-              <v-text-field
-                prepend-icon="lock"
-                v-model="password_confirmation"
-                name="password-confirmation"
-                label="Password Confirmation"
-                id="password-confirmation"
-                type="password"
-              ></v-text-field>
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-btn block color="success" type="submit">Sign Up</v-btn>
+            <v-btn block color="success" type="submit">Sign In</v-btn>
           </v-card-actions>
           <div class="v-card__link text-xs-center">
-            <v-btn small outline color="indigo" to="/">Sign In</v-btn>
+            <v-btn small outline color="indigo" to="/signup">Sign Up</v-btn>
           </div>
         </v-card>
       </v-flex>
@@ -52,12 +43,11 @@
 
 <script>
 export default {
-  name: "Signup",
+  name: "Signin",
   data() {
     return {
       email: "",
       password: "",
-      password_confirmation: "",
       error: ""
     };
   },
@@ -68,13 +58,9 @@ export default {
     this.checkSignedIn();
   },
   methods: {
-    signup() {
+    signin() {
       this.$http.plain
-        .post("/signup", {
-          email: this.email,
-          password: this.password,
-          password_confirmation: this.password_confirmation
-        })
+        .post("/signin", { email: this.email, password: this.password })
         .then(response => this.signinSuccessful(response))
         .catch(error => this.signinFailed(error));
     },
@@ -92,7 +78,7 @@ export default {
     signinFailed(error) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
-        "Something went wrong";
+        "";
       delete localStorage.csrf;
       delete localStorage.signedIn;
     },
@@ -128,4 +114,3 @@ export default {
   &__link
     padding-bottom: 30px
 </style>
-
